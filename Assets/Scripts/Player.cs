@@ -38,4 +38,9 @@ public class Player : MonoBehaviour
     {
         throw new NotImplementedException();
     }
+
+    public void OnCollisionEnter2D(Collision2D otherObject)
+    {
+        Debug.Log("The GameObject Has Collided With " + otherObject.gameObject.name);
+    }
 }
