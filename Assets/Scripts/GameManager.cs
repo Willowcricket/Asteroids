@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    public int Lives = 3;
     public int score = 0;
 
     public void Awake()
@@ -33,5 +34,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape)) {
             Application.Quit();
         }
+    }
+
+    public void Respawn()
+    {
+        
     }
 }

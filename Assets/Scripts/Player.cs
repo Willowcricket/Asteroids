@@ -6,8 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Transform tf;
-    public float rotationSpeed = 1.0f;
-    public float movementSpeed = 1.0f;
+    public float rotationSpeed = 90.0f;
+    public float movementSpeed = 4.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -42,5 +42,10 @@ public class Player : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D otherObject)
     {
         Debug.Log("The GameObject Has Collided With " + otherObject.gameObject.name);
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.instance.Lives--;
     }
 }
