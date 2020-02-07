@@ -41,11 +41,13 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D otherObject)
     {
-        Debug.Log("The GameObject Has Collided With " + otherObject.gameObject.name);
+        Debug.Log("The Player Has Collided With " + otherObject.gameObject.name);
+        Destroy(this.gameObject);
     }
 
     public void OnDestroy()
     {
+        Debug.Log("The Player Has Died");
         GameManager.instance.Lives--;
     }
 }

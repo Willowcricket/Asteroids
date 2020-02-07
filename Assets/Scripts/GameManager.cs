@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape)) {
             Application.Quit();
         }
+        if (Input.GetKeyDown(KeyCode.L)) {
+            Debug.Log("The Player Has " + Lives + " Lives Remaining");
+        }
     }
 
     public void Respawn()
