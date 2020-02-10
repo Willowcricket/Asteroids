@@ -39,12 +39,6 @@ public class Player : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    public void OnCollisionEnter2D(Collision2D otherObject)
-    {
-        Debug.Log("The Player Has Collided With " + otherObject.gameObject.name);
-        Destroy(this.gameObject);
-    }
-
     public void OnDestroy()
     {
         Debug.Log("The Player Has Died");

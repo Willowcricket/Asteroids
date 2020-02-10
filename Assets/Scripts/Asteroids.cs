@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Asteroids : MonoBehaviour
 {
-    public Transform tf;
-    public float movementSpeed = 2.75f;
-
     // Start is called before the first frame update
     void Start()
     {
-        tf = gameObject.GetComponent<Transform>();
+        GameManager.instance.enemiesList.Add(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        tf.position -= tf.right * movementSpeed * Time.deltaTime;
+
     }
     
-    public void Shoot()
+    void OnDestroy()
     {
-        throw new NotImplementedException();
+        GameManager.instance.enemiesList.Remove(this.gameObject);
     }
 
     public void OnCollisionEnter2D(Collision2D otherObject)
@@ -32,10 +28,5 @@ public class Enemy : MonoBehaviour
             Debug.Log("The Player Has Collided With " + this.gameObject.name);
             Destroy(otherObject.gameObject);
         }
-    }
-
-    public void OnDestroy()
-    {
-        Debug.Log("The Enemy Has Died");
     }
 }
