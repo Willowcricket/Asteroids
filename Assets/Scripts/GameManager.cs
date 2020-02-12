@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public int Lives = 3;
     public int score = 0;
     public List<GameObject> enemiesList = new List<GameObject>();
+    public GameObject[] enemyPreFabs;
 
     public void Awake()
     {

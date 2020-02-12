@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroids : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
+    public Transform tf;
+    public float bulletSpeed = 8.0f;
+    public GameObject Killbox;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.enemiesList.Add(this.gameObject);
-        //adjest roto to head toward player
+        tf = gameObject.GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-    
-    void OnDestroy()
-    {
-        GameManager.instance.enemiesList.Remove(this.gameObject);
+        tf.position += tf.up * bulletSpeed * Time.deltaTime;
     }
 
     public void OnCollisionEnter2D(Collision2D otherObject)
     {
-        if (otherObject.gameObject == GameManager.instance.Player)
+        if (otherObject.gameObject != GameManager.instance.Player || otherObject.gameObject != Killbox)
         {
             Debug.Log("The Player Has Collided With " + this.gameObject.name);
             Destroy(otherObject.gameObject);

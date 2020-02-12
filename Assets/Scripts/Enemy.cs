@@ -17,7 +17,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tf.position -= tf.right * movementSpeed * Time.deltaTime;
+        tf.position += tf.right * movementSpeed * Time.deltaTime;
+        GameManager.instance.enemiesList.Add(this.gameObject);
+        //adjext roto to head toward player
     }
     
     public void Shoot()
@@ -31,11 +33,13 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("The Player Has Collided With " + this.gameObject.name);
             Destroy(otherObject.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
     public void OnDestroy()
     {
         Debug.Log("The Enemy Has Died");
+        GameManager.instance.enemiesList.Remove(this.gameObject);
     }
 }
