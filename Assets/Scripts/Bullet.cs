@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tf.position += tf.up * bulletSpeed * Time.deltaTime;
+        tf.position += tf.right * bulletSpeed * Time.deltaTime;
     }
 
     public void OnCollisionEnter2D(Collision2D otherObject)
