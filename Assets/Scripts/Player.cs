@@ -39,12 +39,28 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(BulletPreFab, FirePoint);
+        Instantiate(BulletPreFab, FirePoint.position, FirePoint.rotation);
     }
 
     public void OnDestroy()
     {
         Debug.Log("The Player Has Died");
         GameManager.instance.Lives--;
+    }
+
+    public void Die()
+    {
+        foreach (GameObject gameO in GameManager.instance.enemiesList)
+        {
+            if (gameO.GetComponent<Enemy>())
+            {
+                gameO.GetComponent<Enemy>().Die(); 
+            }
+            else if (gameO.GetComponent<Asteroids>())
+            {
+                gameO.GetComponent<Asteroids>().Die();
+            }
+        }
+        Destroy(this.gameObject);
     }
 }

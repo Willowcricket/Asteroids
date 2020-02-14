@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public List<GameObject> enemiesList = new List<GameObject>();
     public GameObject[] enemyPreFabs;
+    public List<GameObject> spawnPoints = new List<GameObject>();
 
     public void Awake()
     {
@@ -34,11 +35,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        InputHandler();
+        SpawnHandler();
+    }
+
+    private void InputHandler()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             Application.Quit();
         }
-        if (Input.GetKeyDown(KeyCode.L)) {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
             Debug.Log("The Player Has " + Lives + " Lives Remaining");
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            Lives++;
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -51,6 +64,21 @@ public class GameManager : MonoBehaviour
                 Debug.Log("There is already a Player");
             }
         }
+    }
+
+    private void SpawnHandler()
+    {
+        if (GameManager.instance.Player == null)
+        {
+
+        }
+        else if (enemiesList.Count < 3)
+        {
+            int spawns = Random.Range(0, spawnPoints.Count);
+            int enemyPres = Random.Range(0, enemyPreFabs.Length);
+            Instantiate(enemyPreFabs[enemyPres], spawnPoints[spawns].transform.position, spawnPoints[spawns].transform.rotation);
+        }
+        
     }
 
     public void Respawn()
