@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 0}
-  rotationSpeed: 90
+  rotationSpeed: 100
   movementSpeed: 4
   BulletPreFab: {fileID: 8358918225443201737, guid: 4a7245fa521c4984286a76f1a5daf8d7,
     type: 3}

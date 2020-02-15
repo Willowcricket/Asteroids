@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,13 +7,14 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPreFab;
     public GameObject Player;
     public GameObject AsteroidPreFab;
+    public GameObject StartMenu;
     public static GameManager instance;
     public int Lives = 3;
     public int score = 0;
     public List<GameObject> enemiesList = new List<GameObject>();
     public GameObject[] enemyPreFabs;
     public List<GameObject> spawnPoints = new List<GameObject>();
-
+    
     public void Awake()
     {
         if (instance == null)
@@ -35,8 +37,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        StartHndlr();
         InputHandler();
         SpawnHandler();
+    }
+
+    private void StartHndlr()
+    {
+        if (!GameManager.instance.Player)
+        {
+            StartMenu.GetComponent<Transform>().position = new Vector3(0, 0, -2);
+        }
+        else
+        {
+            StartMenu.GetComponent<Transform>().position = new Vector3(0, 0, -12);
+        }
     }
 
     private void InputHandler()
@@ -74,8 +89,8 @@ public class GameManager : MonoBehaviour
         }
         else if (enemiesList.Count < 3)
         {
-            int spawns = Random.Range(0, spawnPoints.Count);
-            int enemyPres = Random.Range(0, enemyPreFabs.Length);
+            int spawns = UnityEngine.Random.Range(0, spawnPoints.Count);
+            int enemyPres = UnityEngine.Random.Range(0, enemyPreFabs.Length);
             Instantiate(enemyPreFabs[enemyPres], spawnPoints[spawns].transform.position, spawnPoints[spawns].transform.rotation);
         }
         
